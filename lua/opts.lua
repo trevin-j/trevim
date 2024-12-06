@@ -18,6 +18,11 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
+-- While I wanted to make tabs obvious so we don't use them...
+-- Godot forced my hand by using tabs for indentation.
+-- So let's at least make them look good.
+vim.opt.tabstop = 4
+vim.opt.wrap = false
 
 -- Folds!!
 vim.opt.foldmethod = 'expr'

@@ -83,6 +83,12 @@ return {
       },
     }
 
+    -- GDScript LSP - connect to Godot!
+    require('lspconfig')['gdscript'].setup {
+      name = 'godot',
+      cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
+    }
+
     require('mason').setup()
 
     local ensure_installed = vim.tbl_keys(servers or {})
