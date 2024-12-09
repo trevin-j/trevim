@@ -11,7 +11,11 @@ return {
     local cmp = require 'cmp'
 
     cmp.setup {
-      completion = { completeopt = 'menu,menuone,noinsert' },
+      -- Has to do with an issue with Godot's LSP! The issue will be fixed with Godot 4.4!
+      -- Once Godot 4.4 is released, this line can be uncommented!
+      -- If there are any autocomplete issues until then, uncomment this line and find a way to change this for
+      -- GDScript files only!
+      -- completion = { completeopt = 'menu,menuone,noinsert' },
       mapping = cmp.mapping.preset.insert {
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
