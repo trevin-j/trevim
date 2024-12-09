@@ -30,6 +30,9 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 
+-- Enable filetype plugins!
+vim.cmd('filetype plugin on')
+
 -- Change how diagnostics are displayed!
 vim.diagnostic.config {
   virtual_text = true,

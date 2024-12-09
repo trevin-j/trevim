@@ -4,7 +4,7 @@ return {
   main = 'nvim-treesitter.configs',
   opts = {
     auto_install = true,
-    highlights = {
+    highlight = {
       enable = true,
       additional_vim_regex_highlighting = { 'ruby' },
     },
