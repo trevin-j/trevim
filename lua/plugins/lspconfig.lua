@@ -87,6 +87,16 @@ return {
     require('lspconfig')['gdscript'].setup {
       name = 'godot',
       cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
+      on_attach = function(client, bufnr)
+        local _notify = client.notify
+        client.notify = function(method, params)
+          -- Godot LSP doesn't support `textDocument/didClose` yet.
+          if method == 'textDocument/didClose' then
+            return
+          end
+          _notify(method, params)
+        end
+      end,
     }
 
     require('mason').setup()
