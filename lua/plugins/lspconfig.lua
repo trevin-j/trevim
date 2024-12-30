@@ -81,10 +81,20 @@ return {
           },
         },
       },
+      -- rust_analyzer = {
+      --   procMacro = {
+      --     enable = true
+      --   },
+      --   cargo = {
+      --     features = "all"
+      --   }
+      -- }
     }
 
+    local lspconfig = require('lspconfig')
+
     -- GDScript LSP - connect to Godot!
-    require('lspconfig')['gdscript'].setup {
+    lspconfig['gdscript'].setup {
       name = 'godot',
       cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
       on_attach = function(client, bufnr)
@@ -98,6 +108,26 @@ return {
         end
       end,
     }
+
+    -- Rust analyzer configs
+    -- lspconfig.rust_analyzer.setup {
+    --   settings = {
+    --     ['rust-analyzer'] = {
+    --       procMacro = {
+    --         -- enable = true,
+    --         ignored = {
+    --           leptos_macro = {
+    --             "component",
+    --             "server",
+    --           }
+    --         }
+    --       },
+    --       cargo = {
+    --         features = {"ssr"},
+    --       },
+    --     }
+    --   }
+    -- }
 
     require('mason').setup()
 
@@ -113,6 +143,26 @@ return {
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
+        end,
+        ["rust_analyzer"] = function()
+          lspconfig.rust_analyzer.setup {
+            settings = {
+              ['rust-analyzer'] = {
+                procMacro = {
+                  -- enable = true,
+                  ignored = {
+                    leptos_macro = {
+                      -- "component",
+                      "server",
+                    }
+                  }
+                },
+                cargo = {
+                  features = {"ssr"},
+                },
+              }
+            }
+          }
         end,
       },
     }
