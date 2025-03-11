@@ -24,6 +24,9 @@ vim.opt.scrolloff = 10
 vim.opt.tabstop = 4
 vim.opt.wrap = false
 
+-- We want full color support!
+vim.opt.termguicolors = true
+
 -- Folds!!
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

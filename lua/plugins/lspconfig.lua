@@ -20,15 +20,15 @@ return {
 
         t_b = require 'telescope.builtin'
 
-        map('gd', t_b.lsp_definitions, '[G]oto [D]efinition')
-        map('gr', t_b.lsp_references, '[G]oto [R]eferences')
-        map('gi', t_b.lsp_implementations, '[G]oto [I]mplementations')
-        map('<leader>td', t_b.lsp_type_definitions, '[T]ype [D]efinition')
-        map('<leader>ds', t_b.lsp_document_symbols, '[D]ocument [S]ymbols')
-        map('<leader>ws', t_b.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+        -- map('gd', t_b.lsp_definitions, '[G]oto [D]efinition')
+        -- map('gr', t_b.lsp_references, '[G]oto [R]eferences')
+        -- map('gi', t_b.lsp_implementations, '[G]oto [I]mplementations')
+        -- map('<leader>td', t_b.lsp_type_definitions, '[T]ype [D]efinition')
+        -- map('<leader>ds', t_b.lsp_document_symbols, '[D]ocument [S]ymbols')
+        -- map('<leader>ws', t_b.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
         map('<leader>rs', vim.lsp.buf.rename, '[R]ename [S]ymbol') -- Easy refactoring! :)
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration') -- Declaration, not definition :/
+        -- map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration') -- Declaration, not definition :/
 
         -- Temporarily highlight references of the word under the cursor! :-)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -56,11 +56,11 @@ return {
         end
 
         -- Inline hints hmm
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map('<leader>th', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          end, '[T]oggle Inlay [H]ints')
-        end
+        -- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        --   map('<leader>th', function()
+        --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+        --   end, '[T]oggle Inlay [H]ints')
+        -- end
       end,
     })
 
@@ -81,6 +81,8 @@ return {
           },
         },
       },
+      tailwindcss = {},
+      ts_ls = {},
       -- rust_analyzer = {
       --   procMacro = {
       --     enable = true
@@ -131,13 +133,17 @@ return {
 
     require('mason').setup()
 
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
+    local servers_ensure_installed = vim.tbl_keys(servers or {})
+    local all_ensure_installed = vim.deepcopy(servers_ensure_installed)
+    vim.list_extend(all_ensure_installed, {
+      'prettier',
       'stylua',
     })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    require('mason-tool-installer').setup { ensure_installed = all_ensure_installed }
 
     require('mason-lspconfig').setup {
+      ensure_installed = servers_ensure_installed,
+      automatic_installation = true,
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
