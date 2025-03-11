@@ -2,6 +2,12 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'nvim-treesitter/nvim-treesitter',
+    'lewis6991/gitsigns.nvim',
+  },
   opts = {
     bigfile = { enabled = true },
     dashboard = {
@@ -139,8 +145,8 @@ _/ (__/_   _/__/ (__(/_(_/__/__/ / (_
     { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
     { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
-    { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-    { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+    { "]r",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+    { "[r",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
     {
       "<leader>N",
       desc = "Neovim News",
