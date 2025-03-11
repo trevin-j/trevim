@@ -2,13 +2,14 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.opt.number = true
+vim.opt.rnu = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false -- Don't show because we have a statusline.
 vim.opt.breakindent = true
 vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.signcolumn = 'yes:1'
+vim.opt.signcolumn = 'auto'
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 vim.opt.splitright = true
@@ -30,7 +31,7 @@ vim.opt.termguicolors = true
 -- Folds!!
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldenable = false
+vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 
 -- Enable filetype plugins!

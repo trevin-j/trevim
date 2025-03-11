@@ -26,4 +26,5 @@ return {
   --   main = 'ibl',
   --   opts = {},
   -- },
+  'ThePrimeagen/vim-be-good', -- Play a game to git gud ;) to play, go to empty file and do :VimBeGood
 }
