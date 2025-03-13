@@ -13,6 +13,8 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- Buffer navigation with bh and bl
 vim.keymap.set('n', '<C-h>', ':bprevious<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('n', '<C-l>', ':bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<C-Left>', ':bprevious<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set('n', '<C-Right>', ':bnext<CR>', { desc = 'Go to next buffer' })
 
 -- Highlight yank :)
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -21,6 +23,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+-- Tmux auto rename windows!
+local uv = vim.uv
+
+vim.api.nvim_create_autocmd({ 'VimEnter', 'VimLeave' }, {
+	callback = function()
+		if vim.env.TMUX_PLUGIN_MANAGER_PATH then
+			uv.spawn(vim.env.TMUX_PLUGIN_MANAGER_PATH .. '/tmux-window-name/scripts/rename_session_windows.py', {})
+		end
+	end,
 })
 
 
