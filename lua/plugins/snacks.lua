@@ -10,8 +10,14 @@ return {
     {
       'folke/persistence.nvim',
       event = "BufReadPre",
-      opts = {},
+      -- opts = {},
       config = function()
+        require("persistence").setup {
+          dir = vim.fn.stdpath("state") .. "/persistence/",
+          need = 1,
+          branch = true,
+        }
+
         -- load the session for the current directory
         vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end)
 
