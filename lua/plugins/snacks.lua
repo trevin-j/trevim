@@ -13,7 +13,7 @@ return {
       -- opts = {},
       config = function()
         require("persistence").setup {
-          dir = vim.fn.stdpath("state") .. "/persistence/",
+          dir = vim.fn.stdpath("state") .. "/sessions/",
           need = 1,
           branch = true,
         }
@@ -29,6 +29,17 @@ return {
 
         -- stop Persistence => session won't be saved on exit
         vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end)
+
+        -- autocmd to save session whenever layout or anything changes
+        vim.api.nvim_create_autocmd(
+          { "BufWinLeave", "BufWritePost", "WinLeave", "TabLeave" },
+          {
+            group = vim.api.nvim_create_augroup("PersistenceAutoSave", { clear = true }),
+            callback = function()
+              require("persistence").save()
+            end,
+          }
+        )
       end,
     }
   },
