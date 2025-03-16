@@ -15,7 +15,7 @@ return {
         require("persistence").setup {
           dir = vim.fn.stdpath("state") .. "/sessions/",
           need = 1,
-          branch = true,
+          branch = false,
         }
 
         -- load the session for the current directory
