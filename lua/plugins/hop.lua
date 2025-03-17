@@ -4,7 +4,7 @@ return {
   config = function()
     local hop = require('hop')
     hop.setup {
-      keys = 'ntesiroaufcywxhdlp',
+      keys = 'ntesiroadh', -- keys for navigagion. These ones I made for colemak dh layout
     }
     -- Better f/F/t/T
     local directions = require('hop.hint').HintDirection
@@ -41,10 +41,18 @@ return {
         current_line_only = false,
       }
     end, { desc = 'Hop to character after cursor', remap = true })
-    vim.keymap.set({'n', 'o', 'x'}, 'S', function()
+    vim.keymap.set({'n', 'x'}, 'S', function()
       hop.hint_lines {
         current_line_only = false,
       }
-    end, { desc = 'Hop to character before cursor', remap = true })
+    end, { desc = 'Hop to line' })
+
+    vim.keymap.set('o', 'S', function()
+      vim.cmd('normal! V')
+      hop.hint_lines {
+        current_line_only = false,
+      }
+    end, { desc = 'Hop to line in linewise mode' })
+
   end,
 }
