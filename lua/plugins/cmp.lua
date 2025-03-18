@@ -33,6 +33,7 @@ return {
         },
         { name = 'nvim_lsp' },
         { name = 'path' },
+        { name = 'render-markdown' },
       },
     }
   end,
