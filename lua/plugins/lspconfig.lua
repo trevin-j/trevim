@@ -138,6 +138,8 @@ return {
     vim.list_extend(all_ensure_installed, {
       'prettier',
       'stylua',
+      'editorconfig-checker',
+      'codespell',
     })
     require('mason-tool-installer').setup { ensure_installed = all_ensure_installed }
 
