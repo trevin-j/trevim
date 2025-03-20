@@ -8,4 +8,9 @@ return {
     }
     vim.cmd("colorscheme cyberdream")
   end,
+  -- dir = '~/dev/neonsign.nvim',
+  -- dependencies = 'rktjmp/lush.nvim',
+  -- init = function()
+  --   vim.cmd('colorscheme neonsign')
+  -- end,
 }

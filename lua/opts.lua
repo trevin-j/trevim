@@ -28,6 +28,9 @@ vim.opt.wrap = false
 -- We want full color support!
 vim.opt.termguicolors = true
 
+-- Move cursor to start of line on big motions.
+vim.opt.startofline = true
+
 -- Folds!!
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

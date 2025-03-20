@@ -2,7 +2,12 @@
 -- Not to be confused with mini.nvim cfg.
 return {
   'tpope/vim-sleuth',
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
   {
     'windwp/nvim-ts-autotag',
     config = function()
